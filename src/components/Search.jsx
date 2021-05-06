@@ -10,9 +10,9 @@ const Search = () => {
   const handleSubmit = ( e ) => {
     e.preventDefault()
     if ( user ) {
-      searchGithubUser(user)
+			searchGithubUser( user )
       // optional empty the input form after submitting
-      // setUser('')
+      setUser('')
     }
 	}
 	return (

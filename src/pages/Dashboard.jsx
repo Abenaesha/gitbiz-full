@@ -10,6 +10,7 @@ const Dashboard = () => {
       <main>
         <Navbar />
         <Search />
+        <h4 className='loading-msg'>Your Biz is important to us...! Please hold</h4>
         <img src={loadingImage} className='loading-img' alt='loading' />
       </main>
     )

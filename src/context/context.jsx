@@ -9,6 +9,7 @@ const baseUrl = "https://api.github.com"
 const GithubContext = React.createContext()
 
 const GithubProvider = ({children}) => {
+
 	const [githubUser, setGithubUser] = useState(mockUser)
 	const [repos, setRepos] = useState(mockRepos)
 	const [followers, setFollowers] = useState(mockFollowers)
@@ -30,6 +31,7 @@ const GithubProvider = ({children}) => {
 		if (response) {
 			setGithubUser(response.data)
 			const {login, followers_url} = response.data
+
 			// // repos
 			// axios(`${baseUrl}/users/${login}/repos?per_page=100`).then(response =>
 			// 	setRepos( response.data )
@@ -39,12 +41,12 @@ const GithubProvider = ({children}) => {
 			// axios( `${ followers_url }?per_page= 100` ).then( response =>
 			// 	setFollowers( response.data )
 			// );
-			await Promise.allSettled( [
-				axios( `${ baseUrl }/users/${ login }/repos?per_page=100` ),
-				axios( `${ followers_url }?per_page= 100` )
-			] ).then( (results) => {
-				const [ repos, followers ] = results;
-				const status = 'fulfilled';
+			await Promise.allSettled([
+				axios(`${baseUrl}/users/${login}/repos?per_page=100`),
+				axios(`${followers_url}?per_page= 100`),
+			]).then((results) => {
+				const [repos, followers] = results
+				const status = "fulfilled"
 				if ( repos.status === status ) {
 					setRepos(repos.value.data)
 				}
@@ -77,7 +79,6 @@ const GithubProvider = ({children}) => {
 	const toggleError = (show = false, msg) => {
 		setError({show, msg})
 	}
-
 	// error
 	useEffect(checkRequests, [])
 

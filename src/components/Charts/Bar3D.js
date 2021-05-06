@@ -26,7 +26,6 @@ const ChartComp = ( { data } ) => {
     dataSource: {
       // Chart Configuration
       chart: {
-
         caption: "Most Forked",
         yAxisName: 'Forks',
         xAxisName: 'Repos',

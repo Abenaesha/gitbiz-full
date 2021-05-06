@@ -1,14 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import {useAuth0} from "@auth0/auth0-react"
+import {RiLogoutCircleRLine} from "react-icons/ri"
 
 const Navbar = () => {
-	const {
-		isAuthenticated,
-		loginWithRedirect,
-		logout,
-		user,
-	} = useAuth0()
+	const {isAuthenticated, loginWithRedirect, logout, user} = useAuth0()
 	const isUser = isAuthenticated && user
 
 	return (
@@ -24,7 +20,8 @@ const Navbar = () => {
 					onClick={() => {
 						logout({returnTo: window.location.origin})
 					}}>
-					logout
+					{" "}
+					<RiLogoutCircleRLine></RiLogoutCircleRLine> logout
 				</button>
 			) : (
 				<button onClick={loginWithRedirect}>login</button>
@@ -53,14 +50,28 @@ const Wrapper = styled.nav`
 		border-radius: 50%;
 		object-fit: cover;
 	}
+
 	button {
-		background: transparent;
-		border: transparent;
-		font-size: 1.2rem;
-		text-transform: capitalize;
+		text-transform: uppercase;
+		background: var(--clr-primary-5);
+		color: var(--clr-primary-10);
+		padding: 0.300rem 0.50rem;
 		letter-spacing: var(--spacing);
-		color: var(--clr-grey-5);
+		display: inline-block;
+		font-weight: 400;
+		transition: var(--transition);
+		font-size: 0.855rem;
+		border: 2px solid transparent;
 		cursor: pointer;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+		border-radius: var(--radius);
+		svg {
+			font-size: 1.2rem;
+		}
+	}
+	button:hover {
+		background: var(--clr-primary-8);
+		color: var(--clr-primary-1);
 	}
 `
 

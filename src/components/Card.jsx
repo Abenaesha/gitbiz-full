@@ -1,8 +1,9 @@
 import React from "react"
 import {GithubContext} from "../context/context"
 import styled from "styled-components"
-import {MdBusiness, MdLocationOn, MdLink} from "react-icons/md"
-
+import {MdBusiness, MdLocationOn, MdLink, MdLaptopMac} from "react-icons/md"
+import {FaTwitter} from "react-icons/fa"
+import { RiUserFollowLine } from "react-icons/ri"
 const Card = () => {
 	const {githubUser} = React.useContext(GithubContext)
 	const {
@@ -14,51 +15,58 @@ const Card = () => {
 		bio,
 		location,
 		twitter_username,
+		hireable,
+		login,
 	} = githubUser
 
-	const proDetails = [location, company]
-	const isPro = proDetails.some((detail) => {
-		return detail !== null
-	})
-	const socDetails = [twitter_username, blog]
-	const isSoc = socDetails.some((detail) => {
-		return detail !== null
-	})
 	return (
 		<Wrapper>
 			<header>
 				<img src={avatar_url} alt={name} />
 				<div>
-					<h4>{name}</h4>
-					{isSoc && <p>@{twitter_username}</p>}
+					<h4>{name ? name : login} </h4>
+					{twitter_username
+						? twitter_username && (
+								<a href={`https://www.twitter.com/${twitter_username}`}>
+									<FaTwitter></FaTwitter>
+									{twitter_username}
+								</a>
+						  )
+						: null}
 				</div>
-				<a href={html_url}> follow</a>
+				<a href={html_url}> <RiUserFollowLine></RiUserFollowLine> follow</a>
 			</header>
 			<p className="bio">{bio}</p>
 			<div className="links">
-				{isPro && (
-					<h4>
-						Professional <span>INFO</span>{" "}
-					</h4>
-				)}
-				<div>
-					{company && (
-						<p>
-							<MdBusiness></MdBusiness> {company}
-						</p>
-					)}
-				</div>
-				<div>
-					{location && (
-						<p>
-							<MdLocationOn></MdLocationOn> {location}
-						</p>
-					)}
-        </div>
-        <a href={ blog }>
-          <MdLink></MdLink>
-          {blog}
-        </a>
+				{hireable
+					? hireable && (
+							<p>
+								<MdLaptopMac></MdLaptopMac>Looking for work
+							</p>
+					  )
+					: null}
+				{company
+					? company && (
+							<p>
+								<MdBusiness></MdBusiness> {company}
+							</p>
+					  )
+					: null}
+				{location
+					? location && (
+							<p>
+								<MdLocationOn></MdLocationOn> {location}
+							</p>
+					  )
+					: null}
+				{blog
+					? blog && (
+							<a href={blog}>
+								<MdLink></MdLink>
+								{blog}
+							</a>
+					  )
+					: null}
 			</div>
 		</Wrapper>
 	)
@@ -119,6 +127,7 @@ const Wrapper = styled.article`
 	}
 	.bio {
 		color: var(--clr-grey-3);
+		font-style: italic;
 	}
 	.links {
 		p,
