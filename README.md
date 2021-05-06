@@ -1,3 +1,9 @@
+## gitbiz
+
+The basic idea is that a digital coding-centred business card is created from public information on your GitHub profile.
+
+fetching github user information and displaying deifferent charts of most popular, forked, and stared repositories as well as displaying a chart of most used languages.
+
 ## Starter Project
 
 - css provided (global styles, styled components)
@@ -47,9 +53,9 @@ version used - "react-router-dom": "^5.2.0",
 ## Gihthub API
 
 - [Root Endpoint](https://api.github.com)
-- [Get User](https://api.github.com/users/wesbos)
-- [Repos](https://api.github.com/users/john-smilga/repos?per_page=100)
-- [Followers](https://api.github.com/users/john-smilga/followers)
+- [Get User](https://api.github.com/users/abenaesha)
+- [Repos](https://api.github.com/users/abenaesha/repos?per_page=100)
+- [Followers](https://api.github.com/users/abenaesha/followers)
 - [Rate Limit](https://api.github.com/rate_limit)
 
   For unauthenticated requests, the rate limit allows for up to 60 requests per hour. Unauthenticated requests are associated with the originating IP address, and not the user making requests.
